@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #212529;
+  font-family: 'Muli', sans-serif;
+  font-size: 10px;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* button {
+  border: none;
+} */
+
+.title {
+  font-size: 3em;
+}
+.main {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+.calculator {
+  border: solid 1px black;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  height: 50rem;
+  width: 25rem;
+}
+
+.calculator__display {
+  height: 30%;
+}
+
+.calculator__keys {
+  align-items: stretch;
+  display: grid;
+  font-size: 2em;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-areas: "plus minus times divide"
+                        "seven eight nine erase"
+                        "four five six equal"
+                        "three two one equal"
+                        "percent zero period equal"
+                        "reset parL parR equal";
+  height: 70%;
+}
+
+.calculator__key {
+  border: solid 1px black;
+  text-align: center;
+}
+
+.erase {
+  grid-area: erase;
+}
+.equal {
+  grid-area: equal;
+}
+.percent {
+  grid-area: percent;
+}
+.period {
+  grid-area: period;
+}
