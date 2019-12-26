@@ -1,9 +1,51 @@
+/* ======= */
+
+/* * {
+  background-color: rgba(255, 0, 0, .2);
+}
+
+* * {
+  background-color: rgba(0, 255, 0, .2);
+}
+
+* * * {
+  background-color: rgba(0, 0, 255, .2);
+}
+
+* * * * {
+  background-color: rgba(255, 0, 255, .2);
+}
+
+* * * * * {
+  background-color: rgba(0, 255, 255, .2);
+}
+
+* * * * * * {
+  background-color: rgba(255, 255, 0, .2);
+}
+
+* * * * * * * {
+  background-color: rgba(255, 0, 0, .2);
+}
+
+* * * * * * * * {
+  background-color: rgba(0, 255, 0, .2);
+}
+
+* * * * * * * * * {
+  background-color: rgba(0, 0, 255, .2);
+} */
+
+
+/* ======= */
+
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  color: #212529;
+  color:#212529;
   font-family: 'Muli', sans-serif;
   font-size: 10px;
   height: 100vh;
@@ -19,26 +61,51 @@ body {
 }
 .main {
   display: flex;
-  height: 100%;
+  height: 70vw;
   justify-content: center;
 }
 .calculator {
-  border: solid 1px black;
+  background-color: #212529;
+  border-radius: 1.2rem;
   display: flex;
   flex-direction: column;
   font-size: 1rem;
-  height: 50rem;
-  width: 25rem;
+  height: 40rem;
+  padding: 0.5rem;
+  width: 20rem;
 }
 
 .calculator__display {
+  background-color: #fafafa;
+  border-radius: 1.2rem 1.2rem 0 0;
+  box-shadow: 0 0 0 1px #999999;
+  border-bottom: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
   height: 30%;
 }
+
+.calculator__display > div {
+  align-items: center;
+  display: flex;
+  font-size: 2em;
+  height: 50%;
+  justify-content: flex-end;
+  padding-right: 1rem;
+}
+
+.calculator__result {
+  color: #999999;
+}
+
 
 .calculator__keys {
   align-items: stretch;
   display: grid;
   font-size: 2em;
+  grid-column-gap: 1px;
+  grid-row-gap: 1px;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(6, 1fr);
   grid-template-areas: "plus minus times divide"
@@ -48,17 +115,36 @@ body {
                         "percent zero period equal"
                         "reset parL parR equal";
   height: 70%;
+  justify-items: stretch;
 }
 
 .calculator__key {
-  border: solid 1px black;
-  text-align: center;
+  align-items: center;
+  background-color: #fafafa;
+  box-shadow: 0 0 0 1px #999999;
+  /* border-radius: 0.8rem; */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.calculator__key:active {
+  background-color: #b3b3b3;
+}
+
+.key--operator {
+  background-color: #e6e6e6;
+  color:#1f97bb;
 }
 
 .erase {
   grid-area: erase;
 }
 .equal {
+  border-radius: 0 0 1.2rem 0;
+  background-color: #ecb807;
+  color: #212529;
   grid-area: equal;
 }
 .percent {
@@ -66,4 +152,8 @@ body {
 }
 .period {
   grid-area: period;
+}
+
+.reset {
+  border-radius: 0 0 0 1.2rem;
 }
