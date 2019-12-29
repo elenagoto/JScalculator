@@ -108,13 +108,12 @@ body {
   grid-column-gap: 1px;
   grid-row-gap: 1px;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   grid-template-areas: "plus minus times divide"
                         "seven eight nine erase"
                         "four five six equal"
                         "three two one equal"
-                        "percent zero period equal"
-                        "reset parL parR equal";
+                        "reset zero period equal";
   height: 70%;
   justify-items: stretch;
 }
@@ -148,13 +147,12 @@ body {
   color: #212529;
   grid-area: equal;
 }
-.percent {
-  grid-area: percent;
-}
+
 .period {
   grid-area: period;
 }
 
 .reset {
   border-radius: 0 0 0 1.2rem;
+  grid-area: reset;
 }
