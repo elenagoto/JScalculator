@@ -5,13 +5,19 @@ const keys = document.querySelector('.calculator__keys');
 
 // Functions for operations:
 
-
-
 function displayCalculation() {
-  let calculation = '';
+  let calculation = [];
   keys.addEventListener('click',(e) => {
-  calculation += e.target.textContent;
-  result.textContent = calculation;
+    if (e.target.textContent === '←'){
+      calculation.pop();
+      result.textContent = calculation.join('');
+    } else if (e.target.textContent === 'C'){
+      calculation = [];
+      result.textContent = calculation.join('');
+    } else {
+      calculation.push(e.target.textContent);
+      result.textContent = calculation.join('');
+    }
   } );
   
 }
@@ -19,6 +25,6 @@ function displayCalculation() {
 displayCalculation();
 
 window.addEventListener('keydown', e => {
-  console.log(e.keyCode);
+  console.log(e.key);
 })
 
