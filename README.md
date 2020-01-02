@@ -9,6 +9,7 @@ This is a calculator project to test and practice my JavaScript.
 - The user should be able to erase the last number or operator.
 - The user should be able to reset the whole calculation with a **C** key.
 - The user should be able to get the result of his/her calculation with the **`=`** key, and should be able to use it as the first number of a new calculation.
+- The user should be able to use both the mouse (screen touch) and the keyboard.
 
 ## Author
 

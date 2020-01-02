@@ -40,7 +40,7 @@ function calculation(operator) {
       currentCalculation.push(operator);
     }
    // if operator is minus and the 'currentOpeartor' is not empty or number is empty, it is use as negative number instead of operator
-  } else if (operator === '-' && currentOperator != '') {
+  } else if (operator === '-' && (currentOperator != '' || currentNumber === '')) {
     currentNumber = operator;
     currentCalculation.push(operator);
   }
@@ -54,12 +54,16 @@ function resultOrErase(changeKey) {
     currentCalculation.pop();
     if (currentCalculation.length === 0) {
       currentResult = '';
+      currentNumber = '';
+      currentOperator = '';
     }
 
   // if the chosen key is 'reset'
   } else if (changeKey === 'C'){
     currentCalculation = [];
     currentResult = '';
+    currentNumber = '';
+    currentOperator = '';
 
   // if the chosen key is 'equal'
   } else if (changeKey === '='){
@@ -67,6 +71,7 @@ function resultOrErase(changeKey) {
     currentCalculation.push(currentResult);
     currentNumber = currentResult;
     currentResult = '';
+    currentOperator = '';
     
   }
 }
