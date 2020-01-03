@@ -5,22 +5,34 @@ const keys = document.querySelector('.calculator__keys');
 const keysList = document.querySelectorAll('.calculator__key');
 
 
-// Variables to get the numbers 
+// Arrays to compare
 
-let currentNumber = '';
-let currentOperator = '';
+const numbers = ['0','1', '2', '3', '4', '5', '6', '8', '9', '.'];
+const operators = ['+', '-', '*', '/'];
+const modifiers = ['=', 'C', '←']
+
+// Variables to store the calculation and the result
 let currentCalculation = [];
+let currentElement = currentCalculation[currentCalculation.length - 1];
 let currentResult = '';
+
+// Var to know if the user has started a calculation or nor
+let newCalculation = false;
 
 
 
 
 // To manage the Keys containing numbers
 function addNumber(number) {
-  // Needs to add number to 'currentNumber', to 'calculation' and to 'displayCalculation'
-  currentOperator = '';
-  currentNumber = number;
-  currentCalculation.push(number);
+  // We need to know if we have to add a zero before a dot
+  let zero = '';
+  for (operator of operators) {
+    if (number === '.' && (newCalculation === false || currentElement === operator)) {
+      zero = '0';
+    }
+  }
+  newCalculation = true;
+  currentCalculation.push(zero + number);
   console.log(currentCalculation);
 }
 
@@ -28,9 +40,9 @@ function addNumber(number) {
 function calculation(operator) {
   // Needs to add operator to 'currentOperator'
   // If there is no number the only operator to use is minus
-  if (currentNumber !== '') {
+  if (newCalculation === true) {
     // if other operator and 'currentOperator' is not empty replaces the currentOperator in currentCalculation.
-    if (operator !== '-' && currentOperator !== '') {
+    if (currentOperator !== '' && operator != '-') {
       currentOperator = operator;
       currentCalculation.pop();
       currentCalculation.push(operator);
@@ -39,7 +51,7 @@ function calculation(operator) {
       currentCalculation.push(operator);
     }
    // if operator is minus and the 'currentOpeartor' is not empty or number is empty, it is use as negative number instead of operator
-  } else if (operator === '-' && (currentOperator != '' || currentNumber === '')) {
+  } else if (operator === '-' && (currentOperator != '' || newCalculation === false)) {
     currentNumber = operator;
     currentCalculation.push(operator);
   }
@@ -55,10 +67,12 @@ function resultOrErase(changeKey) {
     currentOperator = '';
     if (currentCalculation.length === 0) {
       currentResult = '';
+      newCalculation = false;
     }
     
   // if the chosen key is 'reset'
   } else if (changeKey === 'C'){
+    newCalculation = false;
     currentCalculation = [];
     currentResult = '';
     currentNumber = '';
@@ -92,9 +106,6 @@ function resultCalculation() {
 function displayCalculation() {
   result.textContent = currentCalculation.join('');
   resultTemp.textContent = currentResult;
-  if (result.textContent === resultTemp.textContent) {
-    resultTemp.textContent = '';
-  }
 }
 
 function modifyFont() {
