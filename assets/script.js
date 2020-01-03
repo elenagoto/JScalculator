@@ -29,13 +29,12 @@ function calculation(operator) {
   // Needs to add operator to 'currentOperator'
   // If there is no number the only operator to use is minus
   if (currentNumber !== '') {
-    currentNumber = ''
     // if other operator and 'currentOperator' is not empty replaces the currentOperator in currentCalculation.
     if (operator !== '-' && currentOperator !== '') {
       currentOperator = operator;
       currentCalculation.pop();
       currentCalculation.push(operator);
-    } else {
+    } else if (currentOperator === '') {
       currentOperator = operator;
       currentCalculation.push(operator);
     }
@@ -52,12 +51,12 @@ function resultOrErase(changeKey) {
   // if erase -> remove last item on display calculation. If 
   if (changeKey === '←'){
     currentCalculation.pop();
+    currentNumber = '';
+    currentOperator = '';
     if (currentCalculation.length === 0) {
       currentResult = '';
-      currentNumber = '';
-      currentOperator = '';
     }
-
+    
   // if the chosen key is 'reset'
   } else if (changeKey === 'C'){
     currentCalculation = [];
@@ -98,6 +97,20 @@ function displayCalculation() {
   }
 }
 
+function modifyFont() {
+  if (result.textContent.length >= 13) {
+    result.setAttribute('class', 'result--small');
+  } else {
+    result.removeAttribute('class');
+  }
+
+  if (resultTemp.textContent.length >= 15) {
+    resultTemp.setAttribute('class', 'temp--small');
+  } else {
+    resultTemp.removeAttribute('class');
+  }
+}
+
 keys.addEventListener('click', (e) => {
   e.preventDefault();
   // To make sure that the parent elements are ignored
@@ -112,20 +125,33 @@ keys.addEventListener('click', (e) => {
   }
   resultCalculation();
   displayCalculation();
+  modifyFont();
+
+  console.log(`The currentNumber is: ${currentNumber} ---
+  The current operator is ${currentOperator} ---
+  The current calculation is ${currentCalculation} ---
+  The current Result is ${currentResult} ---`)
 });
 
-
+// EventListener to be able to use the keyboard also
 window.addEventListener('keydown', e => {
+  
   for (key of keysList) {
     if (e.key === key.textContent) {
       key.click();
+    // If key is backspace
     } else if (e.key === 'Backspace' && key.textContent === '←') {
       key.click();
-    } else if (e.key === 'c' && key.textContent === 'C') {
+    // if key is C or clear
+    } else if ((e.key === 'c' || e.key === 'Clear') && key.textContent === 'C') {
       key.click();
+    // if key is enter 
     } else if (e.key === 'Enter' && key.textContent === '=') {
       key.click();
+    } else if (e.key === ',' && key.textContent === '.') {
+      key.click();
     }
-
   }
 });
+
+
