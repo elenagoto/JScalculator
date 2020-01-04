@@ -13,6 +13,8 @@ const operators = ['+', '-', '*', '/'];
 let currentCalculation = [];
 let currentElement = '';
 let currentResult = '';
+// This variable contains the final result when the user clicks on 'equal'
+let finalResult = '';
 
 // Var to know if the user has started a calculation or nor
 let newCalculation = false;
@@ -30,6 +32,11 @@ function addNumber(number) {
   }
   // Start calculation
   newCalculation = true;
+  // Erase previous result if there is final result
+  if (finalResult !== '') {
+    currentCalculation.pop();
+    finalResult = '';
+  }
   // Add number to the currentCalculation Array
   currentCalculation.push(zero + number);
 
@@ -59,6 +66,8 @@ function calculation(operator) {
     // Add operator to array
     currentCalculation.push(operator);
   }
+  // Always erase finalResult!
+  finalResult = '';
 }
 
 // To manage the keys other keys
@@ -85,6 +94,7 @@ function modifyCalculation(changeKey) {
   } else if (changeKey === '='){
     currentCalculation = [];
     currentCalculation.push(currentResult);
+    finalResult = currentResult;
     currentResult = '';
   }
 }
