@@ -5,7 +5,6 @@ const resultTemp = document.querySelector('.calculator__result--temp p');
 const keys = document.querySelector('.calculator__keys');
 const keysList = document.querySelectorAll('.calculator__key');
 
-
 // Arrays to compare
 const numbers = ['0','1', '2', '3', '4', '5', '6', '8', '9', '.'];
 const operators = ['+', '-', '*', '/'];
