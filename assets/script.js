@@ -14,6 +14,7 @@ let currentCalculation = [];
 let currentElement = '';
 let currentResult = '';
 // This variable contains the final result when the user clicks on 'equal'
+// This variable allows the user to use the final result for a new calculation, but it gets erased when the user clicks on a new number right after equal.
 let finalResult = '';
 
 // Var to know if the user has started a calculation or nor
@@ -66,7 +67,7 @@ function calculation(operator) {
     // Add operator to array
     currentCalculation.push(operator);
   }
-  // Always erase finalResult!
+  // Always erase finalResult
   finalResult = '';
 }
 
