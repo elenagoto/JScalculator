@@ -68,6 +68,10 @@ a:hover {
   color: #ecb807;
 }
 
+ul {
+  list-style: none;
+}
+
 /* ======= */
 /* HEADER */
 
