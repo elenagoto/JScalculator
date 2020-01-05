@@ -26,11 +26,11 @@ let newCalculation = false;
 function addNumber(number) {
   // We need to know if we have to add a zero before a dot
   let zero = '';
-  for (element of operators) {
-    if (number === '.' && (newCalculation === false || currentElement === element)) {
-      zero = '0';
-    }
+  // Add zero before the dot if there is no previous number
+  if (number === '.' && (newCalculation === false || operators.includes(currentElement))) {
+    zero = '0';
   }
+  
   // Start calculation
   newCalculation = true;
   // Erase previous result if there is final result
@@ -53,12 +53,10 @@ function calculation(operator) {
   } else if (newCalculation === true) {
     // The function has to determine if the current element is a number or operator
     let replace = false;
-    for (element of operators) {
-      // replace will be true if current element is an operator
-      if (currentElement === element) {
-        replace = true;
-      } 
-    }
+    // replace will be true if current element is an operator
+    if (operators.includes(currentElement)) {
+      replace = true;
+    } 
     //  if replace is true, new operator replaces the previous one. 
     if (replace === true) {
       // remove previous operator
