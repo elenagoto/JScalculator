@@ -6,7 +6,7 @@ const keys = document.querySelector('.calculator__keys');
 const keysList = document.querySelectorAll('.calculator__key');
 
 // Arrays to compare
-const numbers = ['0','1', '2', '3', '4', '5', '6', '8', '9', '.'];
+// const numbers = ['0','1', '2', '3', '4', '5', '6', '8', '9', '.'];
 const operators = ['+', '-', '*', '/'];
 
 // Variables to store the calculation and the result
@@ -17,7 +17,7 @@ let currentResult = '';
 // This variable allows the user to use the final result for a new calculation, but it gets erased when the user clicks on a new number right after equal.
 let finalResult = '';
 
-// Var to know if the user has started a calculation or nor
+// Var to know if the user has started a calculation or not
 let newCalculation = false;
 
 
@@ -41,10 +41,9 @@ function addNumber(number) {
   // Add number to the currentCalculation Array
   currentCalculation.push(zero + number);
 
-  console.log(currentCalculation);
 }
 
-// To manage the keys containing operators
+// To manage the keys containing operators (not including equal)
 function calculation(operator) {
   // if the operator is minus, always add it
   if (operator === '-' && currentElement !== '-') {
@@ -69,7 +68,7 @@ function calculation(operator) {
   finalResult = '';
 }
 
-// To manage the keys other keys
+// To manage the other keys
 function modifyCalculation(changeKey) {
 
   // if erase -> remove last item on display calculation. If 
@@ -103,7 +102,7 @@ function resultCalculation() {
   // eval method will display an error each time strign ends in an operator
   try {
     let number = eval(currentCalculation.join(''));
-    if (number != undefined) {
+    if (number !== undefined) {
       currentResult = number;
     } 
   } catch (error) {
